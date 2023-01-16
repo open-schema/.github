@@ -1,32 +1,35 @@
 # Open Schema
 
-A platform for integrating schemas across domains. It contains the specification for an interoperable constraint engine.
+One abstract computational model to rule a subset of them all!
 
-**note** This project is still under design. The scope has changed fairly significantly since the initial draft. The terminology is a work in progress, so there may be some inconsistencies in the documentation.
+**note:** This project is still under design. The scope has changed fairly significantly since the initial draft. The terminology is a work in progress, so there may be some inconsistencies in the documentation.
 
 ## Description
 
-This project aims to define how to process a set of constraints against a set of targets regardless of the schema definition language (SDL) used when defining the constraints and targets. In doing so, this project can facilitate the interoperability of other systems such as:
+Open Schema is an abstract semantic-driven computational model. That is, it describes how to process data while maintaining the purpose of that data at runtime. It is a [standard](https://xkcd.com/927/) for building systems that represent, describe, modify, validate, and generate data (or a subset therein). Open schema provides the high level patterns necessary to implement these five use cases without being tied to any one programming language or schema definition language.
 
-- Serialized data validation schemas: [json-schema](https://json-schema.org/)
-- API schemas: [GraphQL](https://graphql.org/), [OpenApi](https://www.openapis.org/)
-- [Structural type systems](https://en.wikipedia.org/wiki/Structural_type_system): [typescript](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [flow](https://flow.org/en/), [RBS](https://github.com/ruby/rbs), [Sorbet](https://sorbet.org/),
-- [Nominal type systems](https://en.wikipedia.org/wiki/Nominal_type_system): [C++](https://isocpp.org/), [C#](https://docs.microsoft.com/en-us/dotnet/csharp/), [Java](https://docs.oracle.com/en/java/), [Rust](https://www.rust-lang.org/learn)
-- Static analysis tooling
-- Repository convention tooling
+## Key Takeaways
 
-## Benefits
+- Open schema is [Turing complete](https://en.wikipedia.org/wiki/Turing_completeness) [**citation needed**]
+- There is no singular defining implementation of Open Schema
+  - Open Schema is agnostic of any one language
+  - Open Schema focuses on high level abstract patterns; not the specific implementation of those patterns
+- Open Schema does not define a universal set of semantics
+  - Semantics can only be defined when tied to a specific domain
+  - An implementation of Open Schema must define its domain
+  - For relative simplicity, Open Schema itself is currently constrained to the domain of digital systems
+- Open Schema can improve developer agility
+  - A CPU is a finely tuned [Rube Goldberg machine](https://en.wikipedia.org/wiki/Rube_Goldberg_machine) that allows us to build abstract systems on top of it
+  - Developers use computers to implement abstract solutations to definable problems
+  - The Open Schema standard is focused on empowering developers to quickly iterate on language features and expand the interoperability of systems
 
-- It's agnostic of data input: This allows systems to define SDLs that fit their unique needs
-- It focuses on how to define constraints in the abstract: This allows the system to scale to any set of constraints. For example: json-schema is concerned with structuring schemas, definitions of reserved keywords, and handling non-reserved keywords, which resulted in a larger scope of responsibility, and conflicting implementations of keywords.
-    - Ideally this means that any existing SDL and its constraints can be ported to and from open-schema
-- It's designed to be platform independent: It should be possible to build the core constraint engine in any language, and have it interface with constraints implemented in any other languages. It also proposes patterns for building constraint adapters, that can handle the domain concerns of running several unrelated process together efficiently.
-    - For example you might use a core engine written in Rust, but have TypeScript constraints that you want to run under one runtime environment
-- Constraints will be indexed: We will use [UUID version 4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) to create unique identifiers for constraints. This allows different systems to know that they are interfacing with an implementation of the expected constraint. It also enables the enumeration of constraints, so that new engines and constraint implementations can check their validity against existing engines and implementations.
-    - We can define or use an existing definition for an id-hash that is a shorter version of a UUID V4 that is slightly easier to read, and has a 1-1 mapping to UUID V4
-    - Constraints will also have a human readble name, but names are not canonical
-    - We could also have a registry of constraint implementations and unique constraint definitions
-- Different implementations can serve different use cases: For example, some workflows might need an atomic and fast paced engine to provide immediate feedback in an editor, while others might need an asynchronus workflow such as aggregating status updates across the internet.
+## Potential Applications
+
+- **Programming Languages**: Modern programming languages add data type semantics to the binary model of computation. Open Schema can be used to model these data type semantics and improve the static analysis of both [structural type systems](https://en.wikipedia.org/wiki/Structural_type_system) (eg [TypeScript](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)) and [nominal type systems](https://en.wikipedia.org/wiki/Nominal_type_system) (eg [C++](https://isocpp.org/))
+- **Schema Definition Languages (SDLs)**: SDLs (eg [GraphQL](https://graphql.org/), [JSON Schema](https://json-schema.org/), [OpenApi](https://www.openapis.org/)) allow developers to describe data either within a system, or between systems. Open Schema allows developers to focus on enumerating and iterating on the features of an SDL without being limited by syntactic concerns.
+- **Data Validation**: Open Schema abstracts the high level patterns around validating data so that existing systems (eg [JSON Schema](https://json-schema.org/)) can decouple their validation logic concerns from the specific semantics that their technology implements.
+- **Mock Data Generation**: Open Schema abstracts the high level patterns around generating data so that data generation libraries (eg [JSON Schema Faker](https://github.com/json-schema-faker/json-schema-faker)) can drive their implementation from the enumerable features of the data description system (eg a programming language or SDL)
+- **A Super Linter**: Linting is an application of data validation. That is, if you have a description of some system, then you can validate that an instance of the system matches the description. Since Open Schema abstracts the high level patterns around data validation, it can be used to implement a core linting pattern. This allows it to interface with existing linting implementations, and it permits those implementations to focus on domain-specific rules, and not the core pattern of processing rules.
 
 ## Terminology (WIP)
 
