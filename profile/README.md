@@ -10,7 +10,6 @@ Open Schema is an abstract semantic-driven computational model. That is, it desc
 
 ## Key Takeaways
 
-- Open schema is [Turing complete](https://en.wikipedia.org/wiki/Turing_completeness) [**citation needed**]
 - There is no singular defining implementation of Open Schema
   - Open Schema is agnostic of any one language
   - Open Schema focuses on high level abstract patterns; not the specific implementation of those patterns
@@ -18,10 +17,12 @@ Open Schema is an abstract semantic-driven computational model. That is, it desc
   - Semantics can only be defined when tied to a specific domain
   - An implementation of Open Schema must define its domain
   - For relative simplicity, Open Schema itself is currently constrained to the domain of digital systems
-- Open Schema can improve developer agility
+- Open Schema is designed to improve developer agility
   - A CPU is a finely tuned [Rube Goldberg machine](https://en.wikipedia.org/wiki/Rube_Goldberg_machine) that allows us to build abstract systems on top of it
   - Developers use computers to implement abstract solutations to definable problems
   - The Open Schema standard is focused on empowering developers to quickly iterate on language features and expand the interoperability of systems
+  - Open schema is [Turing complete](https://en.wikipedia.org/wiki/Turing_completeness) [**citation needed**]
+  - Open Schema is **not** designed to replace existing programming languages
 
 ## Potential Applications
 
