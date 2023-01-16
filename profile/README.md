@@ -101,6 +101,10 @@ A task that manages one or more target engines, one or more rule engines, and on
 
 ## History and Motivation
 
+```md
+TL;DR: Mistakes were made
+```
+
 1. In hindsight, the ideas behind this project go way back. I was learning full stack web development and basic devops when I ran into the problem of keeping deployed and local database schemas in sync. At the time, I didn't know how to use database migrations to keep deployed databases in sync with my code features. So, I experimented with using database queries to get the structure of each system, to dump the structure to a file, run a diff on the file, and drive a manual process to keep them in sync. I know it sounds bad: I'm in the future also.
 2. At a different point in my career, I was focusing on adding test patterns to a frontend system to keep it in sync with multiple backend systems that were each governed by various JSON Schemas. As a side note, it wouldn't have mattered if we had been using Open API or GraphQL or some other technology, because the resulting problems would have been the same. I was trying to get ahead of the fact that when developers can't readily generate mock data, they will copy chunks of data from test API calls and paste into a code file. This in turn, makes the system impossible to maintain. As a result:
     1. I created [schema-to-generator](https://www.npmjs.com/package/@randograms/schema-to-generator): a wrapper on top of [json-schema-faker](https://www.npmjs.com/package/json-schema-faker) that allows developers to create entire valid objects (or other data types) while only having to specify a subset of the properties. This means that tests can remain lightweight, that is focused on the data that is relevant to the test, while evolving with the external schemas.
