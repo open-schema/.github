@@ -4,7 +4,7 @@ One abstract computational model to rule a subset of them all!
 
 **note:** This project is still under design. The scope has changed fairly significantly since the initial draft. The terminology is a work in progress, so there may be some inconsistencies in the documentation.
 
-Want to see the profusely bleeding edge of Open Schema? Check out the volatile, rudimentary, experimental implementation [here](https://github.com/rachidlamouri/testing-platform#constraint-engine-demo).
+Want to see the profusely bleeding edge of Open Schema? Check out the volatile, rudimentary, experimental implementation [here](https://github.com/rachidlamouri/testing-platform#open-schema-implementation-demo).
 
 ## Description
 
