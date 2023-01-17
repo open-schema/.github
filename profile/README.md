@@ -4,6 +4,8 @@ One abstract computational model to rule a subset of them all!
 
 **note:** This project is still under design. The scope has changed fairly significantly since the initial draft. The terminology is a work in progress, so there may be some inconsistencies in the documentation.
 
+Want to see the profusely bleeding edge of Open Schema? Check out the volatile, rudimentary, experimental implementation [here](https://github.com/rachidlamouri/testing-platform#constraint-engine-demo).
+
 ## Description
 
 Open Schema is an abstract semantic-driven computational model. That is, it describes how to process data while maintaining the purpose of that data at runtime. It is a [standard](https://xkcd.com/927/) for building systems that represent, describe, modify, validate, and generate data (or a subset therein). Open schema provides the high level patterns necessary to implement these five use cases without being tied to any one programming language or schema definition language.
