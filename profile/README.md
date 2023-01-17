@@ -32,57 +32,123 @@ Open Schema is an abstract semantic-driven computational model. That is, it desc
 - **Mock Data Generation**: Open Schema abstracts the high level patterns around generating data so that data generation libraries (eg [JSON Schema Faker](https://github.com/json-schema-faker/json-schema-faker)) can drive their implementation from the enumerable features of the data description system (eg a programming language or SDL)
 - **A Super Linter**: Linting is an application of data validation. That is, if you have a description of some system, then you can validate that an instance of the system matches the description. Since Open Schema abstracts the high level patterns around data validation, it can be used to implement a core linting pattern. This allows it to interface with existing linting implementations, and it permits those implementations to focus on domain-specific rules, and not the core pattern of processing rules.
 
-## Terminology (WIP)
+## Open Schema Terminology (WIP)
 
-### Task
+This section defines how the following terms should be interpreted within the context of Open Schema.
 
-Something that takes zero or more inputs and produces zero or more outputs. Can be implemented by (but is not necessarily limited to) a function or a process.
+### Datum
 
-### Target Concept
+A finite, non-empty set of computer memory. That is, one or more bits of information that is meant to be processed as a whole.
 
-A thing that can be asserted on. It can be tangible or abstract. It can also be a subset or sub-property of another target concept.
+### Datum Instance
 
-### Target Structure
+A datum that can be independently identified from other datum.
 
-The data structure for a target concept.
+### Datum Instance Collection
 
-### Target Instance
+A group of zero or more datum instances that can be processed as a whole. Because a datum instance collection can be empty, a datum instance collection is **not** inherently a datum, but it can be represented by a datum. That means that there is no universal implementation of a datum instance collection. Therefore, implementations of Open Schema must decide on one or more implementations of a datum instance collection (eg an object, set, tuple, array, map ...etc)
 
-The independent in-memory information about a specific occurence of a target concept that matches a defined target structure for that concept.
+### Collection
 
-### Target Path
+A datum instance collection, or a collection of collections.
 
-A serializeable reference to a target instance.
+### Semantics
 
-### Target Instantiator
+> the meaning of a word, phrase, sentence, or text
 
-A task that takes zero or more target instances and creates a target instance and a target path for that instance.
+Since the word semantics does not have a distinguishable plural form, we will use the following notation to differentiate between the two forms:
 
-### Target Path Instantiator
+- semantics(s.): A single semantics
+- semantics(p.): Multiple semantics
 
-A task that creates an alternate target path for a given target instance
+### Datum Semantics(s.)
 
-### Static Target Instance
+A practical concern around how to process a datum instance. This could be a technical concern, such as a data type, or an abstract concern, such as the real world concept that the datum represents.
 
-For lack of a better word: a "hardcoded" target instance.
+### Datum Processor
 
-### Root Target Instance
+Datum that can read and modify a collection when sent to something that can process the datum processor (ie a CPU or another datum processor). A datum processor is said to have side effects when it modifies datum that another datum processor actively depends on.
 
-Either a static target instance, or a target instance created by a target instantiator that took 0 inputs.
+| Datum Processor | Datum Processor Processor |
+|---|---|
+| Binary | CPU |
+| Application | OS |
+| File | Interpreter |
+| Function | Language Runtime |
 
-### Derived Target Instance
+### Datum Semantics(s.) Implementation
 
-A target instance created by a target instantiator that took one or more inputs.
+A datum processor that determines if a datum instance satisfies a datum semantics(s.). By definition, a datum semantics(s.) implementation is a datum instance and therefore a datum.
 
-### Rule
+### Datum Semantics(s.) Implementation Result
 
-A task that makes an assertion on a target instance. Rules can also define a dependency on another rule against the same target structure or another target along a target instance's target path.
+A datum instance that represents the outcome of processing a datum instance through a datum semantics(s.) implementation. The most trivial implemenation is a single bit that indicates success or failure.
 
-**TBD**: Creating all target instances up front could eat up a lot of memory and have a really poor performance, so I'm still designing a way for targets to be derived after a rule passes when rules are dependent on one another.
+### The Null Datum Semantics(s.) Implementation Result
 
-### Rule Configuration
+A special datum semantics(s.) implementation result that indicates that a datum instance has not yet been processed by a datum semantics(s.) implementation.
 
-Information that binds a rule to a target path. This means that a rule is not automatically applied to all instances of its related target concept.
+### Collection Locator
+
+A datum that is used to find a collection.
+
+### Datum Instance Locator
+
+A collection locator that can be used to find a collection with exactly one datum.
+
+### Canonical Datum Instance Locator
+
+The primary datum instance locator for a datum instance.
+
+### Canonical Datum Semantics(s.) Locator
+
+The canonical datum instance locator for a datum semantics(s.) implementation. It can also be used to refer to a particular datum semantics(s.).
+
+### Identifiable Datum Semantics(s.) Implementation Result
+
+A collection that contains a datum semantics(s.) implementation result and a canonical datum semantics(s.) locator.
+
+### Datum Instance Semantics(s.) Results Collection
+
+A collection that contains a canonical datum instance locator as well as zero or more identifiable datum semantics(s.) implementation results. Note that a datum instance semantics(s.) results collection does not actually contain the datum instance, nor does it need to.
+
+### Conditional Datum Semantics(s.) Implementation
+
+A datum semantics(s.) implementation that should only be applied to a datum instance if the datum instance's datum isntance semantics(s.) results collection contains specific results that indicate specific semantics(p.).
+
+### Identifiable Datum Instance
+
+A datum instance collection that contains a datum instance and a canonical datum instance locator.
+
+### Datum Instance Alias
+
+A datum instance collection that contains a canonical datum instance locator and a non-canonical datum instance locator for the same datum instance.
+
+### Datum Instance Configuration
+
+A datum instance collection that contains an identifiable datum instance and zero or more datum instance aliases.
+
+### Datum Instance Configuration Collection
+
+A datum instance collection that contains zero or more datum instance configurations.
+
+### Datum Instance Configuration Collection Builder
+
+A datum processor that uses a datum instance configuration collection to create a non-empty datum instance configuration collection.
+
+### Datum Semantic(s.) Configuration
+
+A datum instance collection that contains a datum semantics(s.) identifier, and a datum instance locator. This allows the datum semantics(s.) implementation to be applied to all datum instances that can be found by the locator.
+
+### IDK
+
+A datum instance collection that contains a datum instance collection of datum locators, a
+
+Input locator, conditions, builder, output locator
+
+### Datum Instance Engine
+
+A datum processor that uses datum instance configuration collection builders
 
 ### Target Engine
 
